@@ -1,19 +1,21 @@
-# ERP-Assistant — агентная среда SDLC
+# sdlc-agents — агентная среда SDLC
 
 Один spec → MVP силами субагентов. Человек участвует только в продукте, дизайне и приёмке.
 
-## Установка в проект
+## Установка в проект (симлинки)
 ```bash
-git clone <this-repo> erp-assistant-env
-./erp-assistant-env/install.sh /path/to/your-project
+git clone https://github.com/xcoder94/sdlc-agents.git
+./sdlc-agents/install.sh /path/to/your-project
 cd /path/to/your-project
 claude
 /superagent
 ```
+`install.sh` подключает среду симлинками: правишь среду в одном месте — изменения видны во всех проектах.
+
 Работает на связке Claude ($20) + Cursor CLI ($20): дорогие роли (analyst/qa/security) — Opus,
 код (backend/frontend) — через Cursor (grok/composer/sonnet). Проверка кода — QA + security.
 
-## Что внутри среды (переносится install.sh)
+## Что внутри среды (подключается install.sh)
 - `CLAUDE.md` — правила супер-агента (оркестратор).
 - `.claude/agents/` — 8 субагентов (analyst, designer, backend, frontend, qa, security, devops, innovator).
 - `.claude/role-skills/<role>/` — скиллы, изолированные по ролям (другие агенты их не видят).
@@ -24,8 +26,8 @@ claude
 
 ## Продукт vs среда
 Код продукта появляется в проекте при работе (свои папки). Файлы среды — только перечисленные выше,
-плюс рабочие артефакты в `work/`. Обновить среду — перезапустить `install.sh` (перезапишет файлы среды,
-код продукта не тронет). Извлечь среду в новый проект — тот же `install.sh` на пустую папку.
+плюс рабочие артефакты в `work/`. Обновить среду — `git pull` в репо среды (симлинки подхватят сразу).
+Подключить среду к новому проекту — тот же `install.sh` на пустую папку.
 
 ## Опционально: entire.io Checkpoints (история сессий агентов)
 ```bash
