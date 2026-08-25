@@ -1,26 +1,37 @@
 #!/usr/bin/env bash
-# Установщик агентной среды SDLC в проект.
-# Копирует ТОЛЬКО файлы среды (не код продукта) в целевую папку.
-# Использование:
-#   ./install.sh /path/to/target-project      # локально из этого репо
-#   curl -fsSL <raw-url>/install.sh | bash -s /path/to/target   # из git (когда среда в репо)
+# Установщик агентной среды SDLC в проект — через СИМЛИНКИ.
+# Файлы среды остаются в этом репо; в проекте создаются симлинки на них.
+# Правишь среду здесь → изменения сразу видны во всех проектах.
+#   ./install.sh /path/to/target-project
 set -euo pipefail
 SRC="$(cd "$(dirname "$0")" && pwd)"
 DST="${1:?Укажи целевую папку проекта}"
+DST="$(cd "$DST" && pwd)"
 mkdir -p "$DST"
-# Файлы СРЕДЫ (переносимые). Код продукта тут не участвует.
-copy() { mkdir -p "$DST/$(dirname "$1")"; cp -r "$SRC/$1" "$DST/$(dirname "$1")/"; }
-copy CLAUDE.md
-copy .claude/agents
-copy .claude/commands
-copy .claude/hooks
-copy .claude/mcp
-copy .claude/settings.json
-copy .claude/role-skills
-copy tools
-copy docs/process.md
-# Пустой каркас рабочих папок (артефакты продукта появятся тут при работе)
+
+link() {
+  local rel="$1"
+  mkdir -p "$DST/$(dirname "$rel")"
+  rm -rf "$DST/$rel"
+  ln -s "$SRC/$rel" "$DST/$rel"
+}
+
+# Симлинки на артефакты СРЕДЫ
+link CLAUDE.md
+link install.sh
+link tools
+link docs/process.md
+link .claude/agents
+link .claude/commands
+link .claude/hooks
+link .claude/mcp
+link .claude/role-skills
+link .claude/settings.json
+
+# Локальный (не симлинк) каркас продукта — живёт в самом проекте
 mkdir -p "$DST/work/tasks" "$DST/work/reports" "$DST/work/state" "$DST/work/design" "$DST/docs/context"
+for d in tasks reports state design; do touch "$DST/work/$d/.gitkeep"; done
 [ -f "$DST/docs/ledger.md" ] || printf '# Token ledger\n\n| datetime (UTC) | who | model | task | input | cache_read | output | total |\n|---|---|---|---|---|---|---|---|\n' > "$DST/docs/ledger.md"
-echo "Среда установлена в: $DST"
+
+echo "Среда подключена симлинками в: $DST"
 echo "Дальше: cd $DST && claude → /superagent"
