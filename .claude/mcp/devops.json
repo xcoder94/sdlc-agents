@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "coolify": {
+      "type": "http",
+      "url": "https://coolify.softstock.app/mcp",
+      "headers": { "Authorization": "Bearer ${COOLIFY_TOKEN}" }
+    }
+  }
+}

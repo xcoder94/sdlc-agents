@@ -1,0 +1,19 @@
+# Локальные секреты и оверрайды среды
+.env
+*.local.json
+.claude/mcp/*.local.json
+.claude/settings.local.json
+
+# Артефакты проекта не должны попадать в репо среды
+work/
+docs/ledger.md
+docs/map.md
+docs/plan.md
+docs/context/handoff.md
+docs/context/env-build.md
+
+# Мусор ОС/редакторов
+.DS_Store
+__pycache__/
+*.pyc
+.claude/.cc-writes/
