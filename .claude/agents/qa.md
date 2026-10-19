@@ -19,3 +19,13 @@ tools: Read, Write, Edit, Bash, Grep, Glob
 - Багов не найдено → короткое «чисто», что покрыто.
 - Найдено → «Обнаружено N багов» + список: где, как воспроизвести, серьёзность.
 Прогресс — `work/state/qa.md`. .md — heredoc.
+
+## Непрерывность (обязательно)
+- В начале каждого запуска выполни свой kickoff-скилл `.claude/role-skills/qa/kickoff/SKILL.md`
+  — он восстанавливает состояние из `work/state/qa.md`.
+- Перед завершением (или по команде «handoff») выполни `.claude/role-skills/qa/handoff/SKILL.md`.
+  Без него не заканчивай.
+- Читаешь только `.claude/role-skills/qa/`. Скиллы и state других ролей не трогаешь.
+- Метод (скиллы в `.claude/role-skills/qa/`): browser-qa обязателен для веб-UI; перед закрытием
+  бага/зелёным прогоном — verification-before-completion; независимое ревью — requesting-code-review;
+  Playwright-инструменты — webapp-testing. Список — `index.md` этой роли.

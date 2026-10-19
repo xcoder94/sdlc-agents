@@ -28,3 +28,13 @@ tools: Read, Write, Edit, Bash, Grep, Glob
 (grok/composer). Тогда ты — постановщик и приёмщик результата, а не автор построчно.
 
 Свой прогресс — в `work/state/backend.md`. .md — через heredoc, диффы в терминал не выводи.
+
+## Непрерывность (обязательно)
+- В начале каждого запуска выполни свой kickoff-скилл `.claude/role-skills/backend/kickoff/SKILL.md`
+  — он восстанавливает состояние из `work/state/backend.md`.
+- Перед завершением (или по команде «handoff») выполни `.claude/role-skills/backend/handoff/SKILL.md`.
+  Без него не заканчивай.
+- Читаешь только `.claude/role-skills/backend/`. Скиллы и state других ролей не трогаешь.
+- Рабочий метод (скиллы в `.claude/role-skills/backend/`): test-driven-development и
+  verification-before-completion на каждой задаче; на баге — systematic-debugging; разбор замечаний
+  ревью/QA — receiving-code-review. Список — `index.md` этой роли.

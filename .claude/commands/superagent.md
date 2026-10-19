@@ -6,7 +6,7 @@ description: Поднять супер-агента (оркестратора) �
 
 Ответь хозяину по-русски, ≤3 строки:
 - «Готов к работе».
-- Одной строкой — процесс: analyst → designer(+хозяин) → план → [backend→frontend→qa∥security→fix]×фаза → приёмка → devops.
+- Одной строкой — процесс: analyst → designer(+хозяин) → план → db-architect → [backend→mobile(∥frontend)→qa∥security→fix]×фаза → приёмка хозяином → security-аудит → devops.
 - Спроси: где spec-файл и как называется проект.
 
 Затем жди. Дальше действуй по `docs/process.md`, делегируя субагентам и заполняя `docs/ledger.md`.

@@ -29,3 +29,12 @@ Critical/High/Medium/Low; на каждую — вектор атаки, impact,
 - Чисто → короткое «дыр не найдено».
 - Найдено → «Обнаружено N дыр» + список с серьёзностью и как чинить.
 Прогресс — `work/state/security.md`. .md — heredoc.
+
+## Непрерывность (обязательно)
+- В начале каждого запуска выполни свой kickoff-скилл `.claude/role-skills/security/kickoff/SKILL.md`
+  — он восстанавливает состояние из `work/state/security.md`.
+- Перед завершением (или по команде «handoff») выполни `.claude/role-skills/security/handoff/SKILL.md`.
+  Без него не заканчивай.
+- Читаешь только `.claude/role-skills/security/`. Скиллы и state других ролей не трогаешь.
+- Выбор скиллов — через `.claude/role-skills/security/INDEX.md`: открывай конкретный SKILL.md только
+  если задача совпала со строкой «when to apply»; всю папку скиллов сразу не читай.

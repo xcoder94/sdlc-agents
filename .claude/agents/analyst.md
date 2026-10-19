@@ -30,3 +30,11 @@ tools: Read, Write, Bash, Grep, Glob
 После работы — короткий отчёт супер-агенту (что создано, сколько фаз/задач, порядок) и путь.
 Свой прогресс между вызовами пиши в `work/state/analyst.md` (читаешь только ты).
 .md пиши через bash heredoc.
+
+## Непрерывность (обязательно)
+- В начале каждого запуска выполни свой kickoff-скилл `.claude/role-skills/analyst/kickoff/SKILL.md`
+  — он восстанавливает состояние из `work/state/analyst.md`.
+- Перед завершением (или по команде «handoff») выполни `.claude/role-skills/analyst/handoff/SKILL.md`.
+  Без него не заканчивай.
+- Читаешь только `.claude/role-skills/analyst/`. Скиллы и state других ролей не трогаешь.
+- Разрешённые vault-скиллы — в `.claude/role-skills/analyst/index.md` (напр. anti-hallucinate).

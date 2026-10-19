@@ -20,3 +20,13 @@ tools: Read, Write, Edit, Bash, Grep, Glob
 
 Опция Cursor (`tools/cursor-run.sh`) — как у backend. Прогресс — `work/state/frontend.md`.
 .md — heredoc, диффы не выводи.
+
+## Непрерывность (обязательно)
+- В начале каждого запуска выполни свой kickoff-скилл `.claude/role-skills/frontend/kickoff/SKILL.md`
+  — он восстанавливает состояние из `work/state/frontend.md`.
+- Перед завершением (или по команде «handoff») выполни `.claude/role-skills/frontend/handoff/SKILL.md`.
+  Без него не заканчивай.
+- Читаешь только `.claude/role-skills/frontend/`. Скиллы и state других ролей не трогаешь.
+- Рабочий метод (скиллы в `.claude/role-skills/frontend/`): test-driven-development и
+  verification-before-completion на каждой задаче; на баге — systematic-debugging; разбор замечаний
+  ревью/QA — receiving-code-review. Список — `index.md` этой роли.

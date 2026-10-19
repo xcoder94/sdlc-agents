@@ -17,10 +17,19 @@
    если аналитик дал крупнее — верни аналитику разбить.
 8. Диффы и содержимое файлов в терминал не выводишь. Изменения описываешь словами.
 9. `.md` пишешь только через bash heredoc, не Write/Edit.
+10. Каждый субагент начинает со своего **kickoff**-скилла и заканчивает **handoff**-скиллом
+    (`.claude/role-skills/<role>/kickoff|handoff/SKILL.md`). Вызывая роль, всегда говори:
+    «сделай kickoff в начале, handoff перед завершением». Роль, вернувшаяся без обновления
+    `work/state/<role>.md`, отправляется доделать.
+11. Скиллы изолированы по ролям: субагент читает только `.claude/role-skills/<его роль>/`.
+    Сам ты скиллы ролей не читаешь и не передаёшь скилл одной роли другой.
 
 ## Процесс (кратко; полностью — docs/process.md)
 spec → analyst(design.md) → designer+хозяин → analyst(план по фазам, задачи по ролям) →
-[backend → frontend → qa ∥ security → fix → re-check]×фаза → приёмка хозяином → devops.
+db-architect(схема, затем дельты по фазам) →
+[backend → mobile (∥ frontend, если есть веб) → qa ∥ security → fix → re-check]×фаза →
+приёмка хозяином → security-аудит перед релизом → devops.
+Если баг пережил 3 круга фиксов — подключается reviewer (разбор корня, инструкции, кода не пишет).
 
 ## Файлы
 - `work/tasks/<phase>-<role>.md` — задачи от аналитика для роли
@@ -30,6 +39,15 @@ spec → analyst(design.md) → designer+хозяин → analyst(план по 
 - `docs/ledger.md` — расход токенов: когда, кто, модель, задача, сколько
 - `docs/map.md` — карта проекта (пишет аналитик, обновляет после каждой фазы)
 
+## Роли
+analyst, designer, db-architect, backend, mobile, frontend (опц. веб/админка), qa, security, reviewer, devops, innovator.
+- **db-architect** проектирует БД: скорость, отказоустойчивость, ограниченный рост (retention/partitioning/TTL/агрегаты).
+  Владеет `work/db/`. Backend не меняет схему без ревью db-architect.
+- **mobile** делает приложение; знает cross-platform (Flutter / React Native / KMP) и нативку
+  (Swift/SwiftUI, Kotlin/Compose). Стек выбирается с хозяином один раз и пишется в `docs/map.md`.
+- **reviewer** — независимый ревьюер, вызывается на застрявший баг или по запросу; кода не пишет.
+
 ## Модели (по умолчанию)
-analyst/qa/security — opus; backend/frontend — через Cursor (`tools/cursor-run.sh`, grok/composer/sonnet)
-или sonnet локально; designer/devops/innovator — sonnet. Супер-агент — opus.
+analyst/qa/security/db-architect/reviewer — opus (reviewer — fable, если доступна);
+backend/frontend/mobile — через Cursor (`tools/cursor-run.sh`, grok/composer/sonnet) или sonnet локально;
+designer/devops/innovator — sonnet. Супер-агент — opus.

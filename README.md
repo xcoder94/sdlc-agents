@@ -17,9 +17,10 @@ claude
 
 ## Что внутри среды (подключается install.sh)
 - `CLAUDE.md` — правила супер-агента (оркестратор).
-- `.claude/agents/` — 8 субагентов (analyst, designer, backend, frontend, qa, security, devops, innovator).
+- `.claude/agents/` — субагенты: analyst, designer, db-architect, backend, mobile, frontend, qa, security, reviewer, devops, innovator.
 - `.claude/role-skills/<role>/` — скиллы, изолированные по ролям (другие агенты их не видят).
-- `.claude/commands/` — `/superagent`, `/handoff`, `/kickoff`.
+- `.claude/commands/` — `/superagent`, `/handoff`, `/kickoff`, `/role` (прямой разговор с ролью), `/devops`.
+- `.claude/skill-vault/` — общий реестр vetted-скиллов (проверка через `sha256sum -c SHA256SUMS`).
 - `.claude/hooks/ledger.py` + `docs/ledger.md` — учёт токенов.
 - `tools/cursor-run.sh` — адаптер сторонних моделей через Cursor CLI.
 - `docs/process.md` — процесс и роли.

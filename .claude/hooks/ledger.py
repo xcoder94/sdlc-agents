@@ -7,7 +7,11 @@ import ledger_common
 try: ev = json.load(sys.stdin)
 except Exception: sys.exit(0)
 sid = ev.get("session_id", "")
-sub = os.path.expanduser(f"~/.claude/projects/-home-xon-Documents-erp-assistant/{sid}/subagents")
+# Папка сессий Claude Code: абсолютный путь корня проекта, где все не-буквенно-цифровые
+# символы заменены на "-". Так хук работает в любом проекте, а не только в одном захардкоженном.
+import re
+proj = re.sub(r"[^A-Za-z0-9]", "-", os.path.abspath(root))
+sub = os.path.expanduser(f"~/.claude/projects/{proj}/{sid}/subagents")
 files = sorted(glob.glob(f"{sub}/agent-*.jsonl"), key=os.path.getmtime) if os.path.isdir(sub) else []
 if not files: sys.exit(0)
 f = files[-1]; aid = os.path.basename(f)[6:-6]

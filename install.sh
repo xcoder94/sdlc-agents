@@ -26,6 +26,7 @@ link .claude/commands
 link .claude/hooks
 link .claude/mcp
 link .claude/role-skills
+link .claude/skill-vault
 link .claude/settings.json
 
 # Локальный (не симлинк) каркас продукта — живёт в самом проекте

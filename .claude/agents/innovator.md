@@ -18,3 +18,10 @@ tools: Read, Write, Bash, Grep, Glob, WebSearch, WebFetch
 - Обновление зависимостей основного репо (npm/pip) — только предложением со списком CVE,
    применяет хозяин или devops.
 Прогресс — `work/state/innovator.md`. .md — heredoc.
+
+## Непрерывность (обязательно)
+- В начале каждого запуска выполни свой kickoff-скилл `.claude/role-skills/innovator/kickoff/SKILL.md`
+  — он восстанавливает состояние из `work/state/innovator.md`.
+- Перед завершением (или по команде «handoff») выполни `.claude/role-skills/innovator/handoff/SKILL.md`.
+  Без него не заканчивай.
+- Читаешь только `.claude/role-skills/innovator/`. Скиллы и state других ролей не трогаешь.

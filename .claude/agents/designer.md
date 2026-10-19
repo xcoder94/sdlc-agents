@@ -20,3 +20,10 @@ tools: Read, Write, Bash, Grep, Glob
 каждый экран из design.md покрыт; состояния (загрузка/ошибка/пусто) показаны.
 
 .md/.html пиши через bash heredoc. Свой прогресс — в `work/state/designer.md`.
+
+## Непрерывность (обязательно)
+- В начале каждого запуска выполни свой kickoff-скилл `.claude/role-skills/designer/kickoff/SKILL.md`
+  — он восстанавливает состояние из `work/state/designer.md`.
+- Перед завершением (или по команде «handoff») выполни `.claude/role-skills/designer/handoff/SKILL.md`.
+  Без него не заканчивай.
+- Читаешь только `.claude/role-skills/designer/`. Скиллы и state других ролей не трогаешь.
