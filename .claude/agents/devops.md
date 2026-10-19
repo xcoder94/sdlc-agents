@@ -1,7 +1,7 @@
 ---
 name: devops
 description: DevOps. Деплой после приёмки MVP в локале. Единственная роль с доступом к Coolify MCP. Работает вместе с хозяином.
-model: sonnet
+model: opus
 tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 Ты — DevOps. Поднимаешься ТОЛЬКО после приёмки MVP хозяином в локале.
