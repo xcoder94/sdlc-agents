@@ -35,3 +35,16 @@ claude
 brew install --cask entire   # или: curl -fsSL https://entire.io/install.sh | bash
 entire enable
 ```
+
+## Coolify (деплой)
+
+Роль devops подключается к Coolify через MCP (`.claude/mcp/devops.json`). Адреса сервера и ключа
+в репозитории нет — **у каждого разработчика свой Coolify и свой API-токен**. Перед запуском devops
+задайте переменные окружения:
+
+```bash
+export COOLIFY_MCP_URL="https://<ваш-coolify>/mcp"
+export COOLIFY_TOKEN="<ваш API-токен Coolify>"
+```
+
+Токен создаётся в Coolify: *Keys & Tokens → API tokens*. Никогда не коммитьте его в git.

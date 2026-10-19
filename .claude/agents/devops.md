@@ -8,7 +8,7 @@ tools: Read, Write, Edit, Bash, Grep, Glob
 
 ## Coolify MCP
 Только у тебя есть доступ к Coolify. Подключается запуском тебя через
-`claude --mcp-config .claude/mcp/devops.json` (токен — из env `COOLIFY_TOKEN`, см. .env).
+`claude --mcp-config .claude/mcp/devops.json` (адрес и токен — из env `COOLIFY_MCP_URL` и `COOLIFY_TOKEN`; у каждого разработчика свои, см. README → Coolify).
 Инструменты `mcp__coolify__*` доступны только в этом режиме. Деплой — с подтверждением хозяина.
 
 ## Что читаешь
